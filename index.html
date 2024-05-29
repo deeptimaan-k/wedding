@@ -54,27 +54,13 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
-<audio id="myAudio">
-    <source src="song.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
-
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const audio = document.getElementById('myAudio');
-        
-        // Attempt to play the audio
-        audio.play().catch(error => {
-            console.log('Autoplay was prevented:', error);
-            
-            // Create a play button for user interaction
-            const playButton = document.createElement('button');
-            playButton.innerText = 'Play Audio';
-            playButton.addEventListener('click', () => {
-                audio.play();
-            });
-            document.body.appendChild(playButton);
+    document.addEventListener('DOMContentLoaded', function() {
+        var audio = document.getElementById('myAudio');
+        audio.addEventListener('play', function() {
+            audio.muted = false;
         });
+        audio.play();
     });
 </script>
 <section class="hero">
@@ -291,5 +277,9 @@
     ga('create', 'UA-46465113-4', 'auto');
     ga('send', 'pageview');
 </script>
+<audio id="myAudio" controls autoplay muted style="visibility:hidden">
+    <source src="song.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+</audio>
 </body>
 </html>
